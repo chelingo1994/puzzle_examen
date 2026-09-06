@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="txtSizeTitle">20sp</dimen>
+    <dimen name="marginTopFirst">50dp</dimen>
+    <dimen name="marginTop">10sp</dimen>
+    <dimen name="buttonWidth">20dp</dimen>
+    <dimen name="buttonHeight">20dp</dimen>
+    <dimen name="buttonMargin">5sp</dimen>
+    <dimen name="btnTextSize">20sp</dimen>
+    <dimen name="txtSizeTitleNormal">20sp</dimen>
+    <dimen name="marginTopAbajo">10sp</dimen>
+    <dimen name="buttonWidthper">70sp</dimen>
+    <dimen name="buttonHeightper">70sp</dimen>
+</resources>

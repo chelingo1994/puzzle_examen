@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">puzzle_examen</string>
+    <string name="appTitle">Ocho Puzzle</string>
+    <string name="Mensaje">Mensaje</string>
+    <string name="Restard">Reiniciar el Juego</string>
+    <string name="Random">Desordenar</string>
+    <string name="txtVerify">Verificar</string>
 </resources>
