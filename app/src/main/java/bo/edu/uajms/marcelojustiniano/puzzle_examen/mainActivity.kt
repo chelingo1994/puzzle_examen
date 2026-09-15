@@ -14,9 +14,11 @@ class mainActivity:AppCompatActivity(){
     private lateinit var btnRandom: Button
     private lateinit var btnVerify: Button
     private lateinit var tablero: Array<Array<String>>
+    private lateinit var TXVMessage: TextView
     //Otras variables
     private var rows=4;
     private var cols=4;
+    private var posVacia = 15
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +42,7 @@ class mainActivity:AppCompatActivity(){
             findViewById(R.id.btn16)
 
         )
-
+        TXVMessage=findViewById(R.id.txtVMessage)
         btnRestart=findViewById(R.id.btnRestart)
         btnRandom=findViewById(R.id.btnRandomize)
         btnVerify=findViewById(R.id.btnVerify)
@@ -66,5 +68,44 @@ class mainActivity:AppCompatActivity(){
             }
         }
 
+
+        // Un mismo listener sirve para las 16 fichas: cada una "sabe" su posición (i)
+        for (i in BTNtablero.indices) {
+            BTNtablero[i].setOnClickListener {
+                moverFicha(i)
+            }
+        }
+
+
     }
+
+
+
+    // El tablero es un array de 16 casillas (0..15), pero se ve como una grilla 4x4.
+    // Estas dos funciones traducen una posición del array a fila/columna.
+    private fun fila(pos: Int) = pos / cols
+    private fun columna(pos: Int) = pos % cols
+
+    // ¿La casilla "pos" está pegada al hueco vacío? (arriba, abajo, izquierda o derecha)
+    private fun esAdyacente(pos: Int): Boolean {
+        val mismaFila = fila(pos) == fila(posVacia)
+        val mismaColumna = columna(pos) == columna(posVacia)
+        val distancia = Math.abs(pos - posVacia)
+
+        val esVecinoHorizontal = mismaFila && distancia == 1      // izquierda/derecha
+        val esVecinoVertical = mismaColumna && distancia == cols  // arriba/abajo (salta 4 en 4)
+        return esVecinoHorizontal || esVecinoVertical
+    }
+
+    // Se ejecuta al tocar la ficha en "pos"
+    private fun moverFicha(pos: Int) {
+        if (esAdyacente(pos)) {
+            // El número de la ficha tocada "salta" al hueco, y la ficha tocada queda vacía
+            BTNtablero[posVacia].text = BTNtablero[pos].text
+            BTNtablero[pos].text = ""
+            posVacia = pos
+        }
+    }
+
+
 }
